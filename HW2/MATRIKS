@@ -1,0 +1,73 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+// Fungsi untuk menampilkan matriks
+void displayMatrix(vector<vector<int>> matrix) {
+    for (size_t i = 0; i < matrix.size(); i++) {
+        for (size_t j = 0; j < matrix[i].size(); j++) {
+            cout << matrix[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+int main() {
+    // Matriks A
+    vector<vector<int>> A = {{1, 2}, {3, 4}};
+
+    // Matriks B
+    vector<vector<int>> B = {{1, 1}, {2, 2}};
+
+    // Penjumlahan Matriks A dan B
+    vector<vector<int>> addition(A.size(), vector<int>(A[0].size()));
+    for (size_t i = 0; i < A.size(); i++) {
+        for (size_t j = 0; j < A[i].size(); j++) {
+            addition[i][j] = A[i][j] + B[i][j];
+        }
+    }
+
+    // Pengurangan Matriks A dan B
+    vector<vector<int>> subtraction(A.size(), vector<int>(A[0].size()));
+    for (size_t i = 0; i < A.size(); i++) {
+        for (size_t j = 0; j < A[i].size(); j++) {
+            subtraction[i][j] = A[i][j] - B[i][j];
+        }
+    }
+
+    // Perkalian Skalar
+    int scalar = 2; // Misalnya, kita akan mengalikan dengan 2
+    vector<vector<int>> scalarMultiplication(A.size(), vector<int>(A[0].size()));
+    for (size_t i = 0; i < A.size(); i++) {
+        for (size_t j = 0; j < A[i].size(); j++) {
+            scalarMultiplication[i][j] = A[i][j] * scalar;
+        }
+    }
+
+    // Perkalian Matriks A dan B
+    vector<vector<int>> multiplication(A.size(), vector<int>(B[0].size()));
+    for (size_t i = 0; i < A.size(); i++) {
+        for (size_t j = 0; j < B[0].size(); j++) {
+            multiplication[i][j] = 0;
+            for (size_t k = 0; k < A[0].size(); k++) {
+                multiplication[i][j] += A[i][k] * B[k][j];
+            }
+        }
+    }
+
+    // Menampilkan Hasil
+    cout << "Penjumlahan A + B:" << endl;
+    displayMatrix(addition);
+
+    cout << "\nPengurangan A - B:" << endl;
+    displayMatrix(subtraction);
+
+    cout << "\nPerkalian Skalar A * 2:" << endl;
+    displayMatrix(scalarMultiplication);
+
+    cout << "\nPerkalian Matriks A * B:" << endl;
+    displayMatrix(multiplication);
+
+    return 0;
+}
